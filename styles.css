@@ -658,58 +658,25 @@ body {
   pointer-events: none;
 }
 
-/* ──── CHARTS ROW ──── */
-.charts-row {
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 0.75rem;
-  margin-bottom: 1.1rem;
+.chart-wrapper {
   width: 100%;
-  /* gap: 1rem; */
-  /* grid-template-columns: 1fr 360px;
-  margin-bottom: 1.5rem; */
-}
-
-.chart-canvas-wrap {
-  position: relative;
-  height: 220px;
-}
-
-.donut-wrap {
-  height: 200px;
-}
-
-.mini-select {
-  background: var(--bg-input);
-  border: 1px solid var(--border);
-  color: var(--text-2);
-  padding: 0.28rem 0.55rem;
-  border-radius: var(--r-sm);
-  font-family: var(--ff-body);
-  font-size: 0.78rem;
-  cursor: pointer;
-}
-
-.donut-legend {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 0.7rem;
-  margin-top: 0.75rem;
+  justify-content: center;
 }
 
-.legend-dot-item {
+.chart-inner {
+  width: 100%;
+  max-width: 320px;
+}
+
+canvas {
+  width: 100% !important;
+  display: block;
+}
+
+.donut-container {
   display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.72rem;
-  color: var(--text-2);
-}
-
-.legend-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
+  justify-content: center;
 }
 
 /* ──── WIDGETS ROW (Wallets + Insights) ──── */
