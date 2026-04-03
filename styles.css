@@ -2336,49 +2336,7 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── 3. Nav button hover — slide indicator ── */
-.nav-btn::after {
-  content: '';
-  position: absolute;
-  left: 0; top: 50%; bottom: auto;
-  width: 3px; height: 0;
-  background: var(--accent);
-  border-radius: 0 3px 3px 0;
-  transform: translateY(-50%);
-  transition: height 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-}
-.nav-btn:hover::after { height: 60%; }
-.nav-btn.active::after { height: 0; } /* use ::before for active */
-
-/* ── 4. Logo gem — breathing glow ── */
-.logo-gem {
-  animation: logoGlow 3s ease-in-out infinite;
-}
-@keyframes logoGlow {
-  0%,100% { box-shadow: 0 4px 14px var(--accent-glow); }
-  50%      { box-shadow: 0 6px 24px var(--accent-glow), 0 0 0 4px var(--accent-dim); }
-}
-
-/* ── 5. Topbar add button — subtle shimmer ── */
-.topbar-add-btn::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
-  transform: skewX(-20deg);
-  animation: btnShimmer 3.5s ease-in-out infinite;
-  pointer-events: none;
-}
-.topbar-add-btn { position: relative; overflow: hidden; }
-@keyframes btnShimmer {
-  0%,70%,100% { left: -100%; }
-  40%          { left: 140%; }
-}
-
-/* ── 8. Progress bars — animated fill on load ── */
+/* ── 3. Progress bars — animated fill on load ── */
 .bi-bar-fill,
 .gc-bar-fill,
 .wfc-bar-fill,
@@ -2391,13 +2349,33 @@ body {
   from { width: 0 !important; }
 }
 
-/* ── 9. Toast — spring entrance ── */
-@keyframes toastIn {
-  from { opacity: 0; transform: translateX(28px) scale(0.92); }
-  to   { opacity: 1; transform: translateX(0)  scale(1); }
+/* ── 4. Modal entrance — spring scale ── */
+.modal-overlay.open .modal {
+  animation: modalSpring 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes modalSpring {
+  from { opacity: 0; transform: scale(0.88) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* ── 10. Insight blocks — stagger in ── */
+/* Bottom-sheet on mobile still slides from bottom */
+@media (max-width: 767px) {
+  @keyframes modalSpring {
+    from { opacity: 0; transform: translateY(100%); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* ── 5. View switch — smooth fade ── */
+.view.active {
+  animation: viewFadeIn 0.32s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes viewFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── 6. Insight blocks — stagger in ── */
 .insight-block {
   animation: insightIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
@@ -2415,24 +2393,7 @@ body {
   to   { opacity: 1; transform: translateX(0); }
 }
 
-/* ── 11. Modal entrance — spring scale ── */
-.modal-overlay.open .modal {
-  animation: modalSpring 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-@keyframes modalSpring {
-  from { opacity: 0; transform: scale(0.88) translateY(20px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-/* Bottom-sheet on mobile still slides from bottom */
-@media (max-width: 767px) {
-  @keyframes modalSpring {
-    from { opacity: 0; transform: translateY(100%); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-}
-
-/* ── 12. Wallets hero amount — scale pulse on mount ── */
+/* ── 7. Wallets hero amount — scale pulse on mount ── */
 .wallets-hero-amt {
   animation: heroAmtIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   animation-delay: 0.15s;
@@ -2442,35 +2403,20 @@ body {
   to   { opacity: 1; transform: scale(1); }
 }
 
-/* ── 13. View switch — smooth fade ── */
-.view.active {
-  animation: viewFadeIn 0.32s cubic-bezier(0.4, 0, 0.2, 1) both;
+/* ── 8. Nav button hover — slide indicator ── */
+.nav-btn::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%; bottom: auto;
+  width: 3px; height: 0;
+  background: var(--accent);
+  border-radius: 0 3px 3px 0;
+  transform: translateY(-50%);
+  transition: height 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
-@keyframes viewFadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── 14. Budget bar — color pulse when danger ── */
-.bi-bar-fill.danger {
-  animation: barGrow 0.8s cubic-bezier(0.4, 0, 0.2, 1) both,
-             dangerPulse 2s ease-in-out 1s infinite;
-}
-@keyframes dangerPulse {
-  0%,100% { opacity: 1; }
-  50%      { opacity: 0.65; }
-}
-
-/* ── 15. Loading dots — enhanced ── */
-.loading-dots span {
-  animation: ldotBounce 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-}
-.loading-dots span:nth-child(2) { animation-delay: 0.15s; }
-.loading-dots span:nth-child(3) { animation-delay: 0.30s; }
-@keyframes ldotBounce {
-  0%,80%,100% { transform: scale(0.7) translateY(0); opacity: 0.25; }
-  40%          { transform: scale(1)   translateY(-4px); opacity: 1; }
-}
+.nav-btn:hover::after { height: 60%; }
+.nav-btn.active::after { height: 0; } /* use ::before for active */
 
 /* ── Reduce motion accessibility ── */
 @media (prefers-reduced-motion: reduce) {
