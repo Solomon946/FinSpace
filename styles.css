@@ -2378,30 +2378,6 @@ body {
   40%          { left: 140%; }
 }
 
-/* ── 6. Transaction item — slide in from left ── */
-.txn-item {
-  animation: txnSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-@keyframes txnSlideIn {
-  from { opacity: 0; transform: translateX(-12px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-/* ── 7. Wallet full card — float up on hover (enhanced) ── */
-.wallet-full-card,
-.goal-card {
-  transition:
-    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.28s ease,
-    border-color 0.22s ease;
-}
-.wallet-full-card:hover {
-  transform: translateY(-5px) scale(1.01);
-}
-.goal-card:hover {
-  transform: translateY(-4px) scale(1.01);
-}
-
 /* ── 8. Progress bars — animated fill on load ── */
 .bi-bar-fill,
 .gc-bar-fill,
