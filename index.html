@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="FinSpace — Personal Finance Manager" />
+  <link rel="icon" href="/favicon_io/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
   <title>FinSpace</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
   <!-- ════════════════ SIDEBAR ════════════════ -->
@@ -20,20 +29,35 @@
       <span class="logo-name">FinSpace</span>
       <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu">✕</button>
     </div>
+
     <nav class="sidebar-nav">
       <div class="nav-group">
         <span class="nav-group-label">Overview</span>
-        <button class="nav-btn active" data-view="dashboard"><span class="nav-ico">⬡</span><span class="nav-txt">Dashboard</span></button>
-        <button class="nav-btn" data-view="transactions"><span class="nav-ico">⇄</span><span class="nav-txt">Transactions</span></button>
-        <button class="nav-btn" data-view="analytics"><span class="nav-ico">◎</span><span class="nav-txt">Analytics</span></button>
+        <button class="nav-btn active" data-view="dashboard">
+          <span class="nav-ico">⬡</span><span class="nav-txt">Dashboard</span>
+        </button>
+        <button class="nav-btn" data-view="transactions">
+          <span class="nav-ico">⇄</span><span class="nav-txt">Transactions</span>
+        </button>
+        <button class="nav-btn" data-view="analytics">
+          <span class="nav-ico">◎</span><span class="nav-txt">Analytics</span>
+        </button>
       </div>
+
       <div class="nav-group">
         <span class="nav-group-label">Money</span>
-        <button class="nav-btn" data-view="wallets"><span class="nav-ico">💳</span><span class="nav-txt">Wallets</span></button>
-        <button class="nav-btn" data-view="goals"><span class="nav-ico">🎯</span><span class="nav-txt">Saving Goals</span></button>
-        <button class="nav-btn" data-view="budget"><span class="nav-ico">📊</span><span class="nav-txt">Budget</span></button>
+        <button class="nav-btn" data-view="wallets">
+          <span class="nav-ico">💳</span><span class="nav-txt">Wallets</span>
+        </button>
+        <button class="nav-btn" data-view="goals">
+          <span class="nav-ico">🎯</span><span class="nav-txt">Saving Goals</span>
+        </button>
+        <button class="nav-btn" data-view="budget">
+          <span class="nav-ico">📊</span><span class="nav-txt">Budget</span>
+        </button>
       </div>
     </nav>
+
     <div class="sidebar-bottom">
       <button class="theme-toggle-btn" id="themeToggleBtn">
         <span class="theme-ico-wrap" id="themeIcoWrap">◑</span>
@@ -45,7 +69,7 @@
   <!-- ════════════════ MAIN LAYOUT ════════════════ -->
   <div class="app-layout" id="appLayout">
     <header class="topbar">
-      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
       <h1 class="topbar-title" id="topbarTitle">Dashboard</h1>
@@ -57,8 +81,9 @@
 
     <main class="main-wrap">
 
-      <!-- ──────── DASHBOARD ──────── -->
+      <!-- ──────── DASHBOARD VIEW ──────── -->
       <section class="view active" id="view-dashboard">
+        <!-- Stats Row -->
         <div class="stats-row">
           <div class="stat-card card-balance">
             <p class="stat-label">Total Balance</p>
@@ -83,6 +108,7 @@
           </div>
         </div>
 
+        <!-- Charts Row -->
         <div class="charts-row">
           <div class="panel chart-panel">
             <div class="panel-head">
@@ -92,35 +118,54 @@
                 <option value="12">Last 12 months</option>
               </select>
             </div>
-            <div class="chart-canvas-wrap"><canvas id="cashFlowChart"></canvas></div>
+            <div class="chart-canvas-wrap">
+              <canvas id="cashFlowChart"></canvas>
+            </div>
           </div>
           <div class="panel chart-panel">
-            <div class="panel-head"><h3 class="panel-title">By Category</h3></div>
-            <div class="chart-canvas-wrap donut-wrap"><canvas id="categoryChart"></canvas></div>
+            <div class="panel-head">
+              <h3 class="panel-title">By Category</h3>
+            </div>
+            <div class="chart-canvas-wrap donut-wrap">
+              <canvas id="categoryChart"></canvas>
+            </div>
             <div class="donut-legend" id="donutLegend"></div>
           </div>
         </div>
 
+        <!-- Your Wallets + Smart Insights -->
         <div class="widgets-row">
+
+          <!-- YOUR WALLETS WIDGET -->
           <div class="panel wallets-panel">
             <div class="panel-head">
               <h3 class="panel-title">Your Wallets</h3>
               <button class="mini-link-btn" onclick="switchView('wallets')">View All →</button>
             </div>
-            <div class="wallet-list-mini" id="dashWalletList"><div class="widget-placeholder">Loading wallets…</div></div>
-            <button class="manage-wallets-btn" onclick="openWalletModal()"><span>＋</span> Manage Wallets</button>
+            <div class="wallet-list-mini" id="dashWalletList">
+              <div class="widget-placeholder">Loading wallets…</div>
+            </div>
+            <button class="manage-wallets-btn" onclick="openWalletModal()">
+              <span>＋</span> Manage Wallets
+            </button>
           </div>
+
+          <!-- SMART INSIGHTS WIDGET -->
           <div class="panel insights-panel">
             <div class="insights-panel-head">
               <span class="insights-star">✦</span>
               <h3 class="insights-title">Smart Insights</h3>
             </div>
             <div class="insights-blocks" id="insightsBlocks">
-              <div class="loading-dots-wrap"><div class="loading-dots"><span></span><span></span><span></span></div><span>Analysing data…</span></div>
+              <div class="loading-dots-wrap">
+                <div class="loading-dots"><span></span><span></span><span></span></div>
+                <span>Analysing data…</span>
+              </div>
             </div>
           </div>
         </div>
 
+        <!-- Recent Transactions -->
         <div class="section-header">
           <h3 class="section-title">Recent Transactions</h3>
           <button class="mini-link-btn" data-view="transactions">View all →</button>
@@ -128,23 +173,33 @@
         <div class="txn-list" id="recentTxnList"></div>
       </section>
 
-      <!-- ──────── TRANSACTIONS ──────── -->
+      <!-- ──────── TRANSACTIONS VIEW ──────── -->
       <section class="view" id="view-transactions">
         <div class="filter-bar">
-          <div class="search-box"><span class="search-ico">⌕</span><input type="text" id="searchInp" class="search-input" placeholder="Search transactions…" /></div>
-          <select id="fltType" class="filter-select"><option value="">All Types</option><option value="income">Income</option><option value="expense">Expense</option></select>
-          <select id="fltCat" class="filter-select"><option value="">All Categories</option></select>
+          <div class="search-box">
+            <span class="search-ico">⌕</span>
+            <input type="text" id="searchInp" class="search-input" placeholder="Search transactions…" />
+          </div>
+          <select id="fltType" class="filter-select">
+            <option value="">All Types</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+          <select id="fltCat" class="filter-select">
+            <option value="">All Categories</option>
+          </select>
           <input type="month" id="fltMonth" class="filter-select" />
           <button class="clear-filters-btn" id="clearFiltersBtn">Clear</button>
         </div>
         <div class="txn-list" id="allTxnList"></div>
         <div class="empty-state" id="txnsEmpty" style="display:none">
-          <div class="empty-ico">⊘</div><p>No transactions found</p>
+          <div class="empty-ico">⊘</div>
+          <p>No transactions found</p>
           <button class="btn-primary" id="emptyAddTxnBtn">Add Transaction</button>
         </div>
       </section>
 
-      <!-- ──────── ANALYTICS ──────── -->
+      <!-- ──────── ANALYTICS VIEW ──────── -->
       <section class="view" id="view-analytics">
         <div class="month-stepper">
           <button class="stepper-btn" id="prevMonthBtn">←</button>
@@ -152,21 +207,42 @@
           <button class="stepper-btn" id="nextMonthBtn">→</button>
         </div>
         <div class="stats-row stats-row-3">
-          <div class="stat-card card-income"><p class="stat-label">Total Income</p><h2 class="stat-val" id="aIncome">₹0.00</h2></div>
-          <div class="stat-card card-expense"><p class="stat-label">Total Expenses</p><h2 class="stat-val" id="aExpense">₹0.00</h2></div>
-          <div class="stat-card card-savings"><p class="stat-label">Net Savings</p><h2 class="stat-val" id="aSavings">₹0.00</h2></div>
+          <div class="stat-card card-income">
+            <p class="stat-label">Total Income</p>
+            <h2 class="stat-val" id="aIncome">₹0.00</h2>
+          </div>
+          <div class="stat-card card-expense">
+            <p class="stat-label">Total Expenses</p>
+            <h2 class="stat-val" id="aExpense">₹0.00</h2>
+          </div>
+          <div class="stat-card card-savings">
+            <p class="stat-label">Net Savings</p>
+            <h2 class="stat-val" id="aSavings">₹0.00</h2>
+          </div>
         </div>
         <div class="charts-row">
-          <div class="panel chart-panel"><div class="panel-head"><h3 class="panel-title">Daily Spending</h3></div><div class="chart-canvas-wrap"><canvas id="dailyChart"></canvas></div></div>
-          <div class="panel chart-panel"><div class="panel-head"><h3 class="panel-title">Income vs Expense</h3></div><div class="chart-canvas-wrap"><canvas id="compareChart"></canvas></div></div>
+          <div class="panel chart-panel">
+            <div class="panel-head">
+              <h3 class="panel-title">Daily Spending</h3>
+            </div>
+            <div class="chart-canvas-wrap"><canvas id="dailyChart"></canvas></div>
+          </div>
+          <div class="panel chart-panel">
+            <div class="panel-head">
+              <h3 class="panel-title">Income vs Expense</h3>
+            </div>
+            <div class="chart-canvas-wrap"><canvas id="compareChart"></canvas></div>
+          </div>
         </div>
         <div class="panel" style="margin-top:1rem">
-          <div class="panel-head"><h3 class="panel-title">Category Breakdown</h3></div>
+          <div class="panel-head">
+            <h3 class="panel-title">Category Breakdown</h3>
+          </div>
           <div class="cat-bars-list" id="catBarsList"></div>
         </div>
       </section>
 
-      <!-- ──────── WALLETS ──────── -->
+      <!-- ──────── WALLETS VIEW ──────── -->
       <section class="view" id="view-wallets">
         <div class="wallets-hero">
           <div class="wallets-hero-left">
@@ -179,7 +255,7 @@
         <div class="wallets-grid" id="walletsGrid"></div>
       </section>
 
-      <!-- ──────── SAVING GOALS ──────── -->
+      <!-- ──────── SAVING GOALS VIEW ──────── -->
       <section class="view" id="view-goals">
         <div class="view-header">
           <h2 class="view-header-title">Saving Goals</h2>
@@ -187,12 +263,13 @@
         </div>
         <div class="goals-grid" id="goalsGrid"></div>
         <div class="empty-state" id="goalsEmpty" style="display:none">
-          <div class="empty-ico">🎯</div><p>No saving goals yet. Start one!</p>
+          <div class="empty-ico">🎯</div>
+          <p>No saving goals yet. Start one!</p>
           <button class="btn-primary" id="emptyGoalBtn">Create a Goal</button>
         </div>
       </section>
 
-      <!-- ──────── BUDGET ──────── -->
+      <!-- ──────── BUDGET VIEW ──────── -->
       <section class="view" id="view-budget">
         <div class="view-header">
           <h2 class="view-header-title">Monthly Budgets</h2>
@@ -200,7 +277,8 @@
         </div>
         <div class="budget-list" id="budgetList"></div>
         <div class="empty-state" id="budgetEmpty" style="display:none">
-          <div class="empty-ico">📊</div><p>No budgets set yet</p>
+          <div class="empty-ico">📊</div>
+          <p>No budgets set yet</p>
           <button class="btn-primary" id="emptyBudgetBtn">Set a Budget</button>
         </div>
         <div class="panel import-export-panel">
@@ -219,55 +297,106 @@
 
   <!-- ════════════════ MODALS ════════════════ -->
 
+  <!-- Add/Edit Transaction -->
   <div class="modal-overlay" id="txnModal" role="dialog" aria-modal="true">
     <div class="modal">
-      <div class="modal-hd"><h2 class="modal-ttl" id="txnModalTitle">New Transaction</h2><button class="modal-close-btn" id="closeTxnModalBtn">✕</button></div>
+      <div class="modal-hd">
+        <h2 class="modal-ttl" id="txnModalTitle">New Transaction</h2>
+        <button class="modal-close-btn" id="closeTxnModalBtn">✕</button>
+      </div>
       <div class="type-switcher">
         <button class="type-switch-btn active" data-type="expense">Expense</button>
         <button class="type-switch-btn" data-type="income">Income</button>
       </div>
       <div class="modal-body">
-        <div class="form-field"><label>Amount</label><div class="amount-field-wrap"><span class="currency-prefix">₹</span><input type="number" id="txnAmtInp" placeholder="0.00" min="0" step="0.01" inputmode="decimal" /></div></div>
-        <div class="form-row-2">
-          <div class="form-field"><label>Category</label><select id="txnCatSel"></select></div>
-          <div class="form-field"><label>Date</label><input type="date" id="txnDateInp" /></div>
+        <div class="form-field">
+          <label>Amount</label>
+          <div class="amount-field-wrap">
+            <span class="currency-prefix">₹</span>
+            <input type="number" id="txnAmtInp" placeholder="0.00" min="0" step="0.01" />
+          </div>
         </div>
-        <div class="form-field"><label>Notes <span class="opt-badge">(optional)</span></label><input type="text" id="txnNotesInp" placeholder="Add a note…" /></div>
+        <div class="form-row-2">
+          <div class="form-field">
+            <label>Category</label>
+            <select id="txnCatSel"></select>
+          </div>
+          <div class="form-field">
+            <label>Date</label>
+            <input type="date" id="txnDateInp" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Notes <span class="opt-badge">(optional)</span></label>
+          <input type="text" id="txnNotesInp" placeholder="Add a note…" />
+        </div>
       </div>
-      <div class="modal-ft"><button class="btn-ghost" id="cancelTxnBtn">Cancel</button><button class="btn-primary" id="saveTxnBtn">Save Transaction</button></div>
+      <div class="modal-ft">
+        <button class="btn-ghost" id="cancelTxnBtn">Cancel</button>
+        <button class="btn-primary" id="saveTxnBtn">Save Transaction</button>
+      </div>
     </div>
   </div>
 
+  <!-- Budget Modal -->
   <div class="modal-overlay" id="budgetModal" role="dialog" aria-modal="true">
     <div class="modal modal-sm">
-      <div class="modal-hd"><h2 class="modal-ttl">Set Budget</h2><button class="modal-close-btn" id="closeBudgetModalBtn">✕</button></div>
-      <div class="modal-body">
-        <div class="form-field"><label>Category</label><select id="budgetCatSel"></select></div>
-        <div class="form-field"><label>Monthly Limit (₹)</label><input type="number" id="budgetLimitInp" placeholder="e.g. 5000" min="0" inputmode="decimal" /></div>
+      <div class="modal-hd">
+        <h2 class="modal-ttl">Set Budget</h2>
+        <button class="modal-close-btn" id="closeBudgetModalBtn">✕</button>
       </div>
-      <div class="modal-ft"><button class="btn-ghost" id="cancelBudgetBtn">Cancel</button><button class="btn-primary" id="saveBudgetBtn">Save Budget</button></div>
+      <div class="modal-body">
+        <div class="form-field">
+          <label>Category</label>
+          <select id="budgetCatSel"></select>
+        </div>
+        <div class="form-field">
+          <label>Monthly Limit (₹)</label>
+          <input type="number" id="budgetLimitInp" placeholder="e.g. 5000" min="0" />
+        </div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn-ghost" id="cancelBudgetBtn">Cancel</button>
+        <button class="btn-primary" id="saveBudgetBtn">Save Budget</button>
+      </div>
     </div>
   </div>
 
+  <!-- Wallet Modal -->
   <div class="modal-overlay" id="walletModal" role="dialog" aria-modal="true">
     <div class="modal modal-sm">
-      <div class="modal-hd"><h2 class="modal-ttl" id="walletModalTitle">Add Wallet</h2><button class="modal-close-btn" id="closeWalletModalBtn">✕</button></div>
+      <div class="modal-hd">
+        <h2 class="modal-ttl" id="walletModalTitle">Add Wallet</h2>
+        <button class="modal-close-btn" id="closeWalletModalBtn">✕</button>
+      </div>
       <div class="modal-body">
-        <div class="form-field"><label>Wallet Name</label><input type="text" id="walletNameInp" placeholder="e.g. HDFC Bank" /></div>
-        <div class="form-field"><label>Icon</label>
+        <div class="form-field">
+          <label>Wallet Name</label>
+          <input type="text" id="walletNameInp" placeholder="e.g. HDFC Bank" />
+        </div>
+        <div class="form-field">
+          <label>Icon</label>
           <div class="emoji-picker" id="walletEmojiPicker">
-            <div class="ep-opt selected" data-emoji="💳">💳</div><div class="ep-opt" data-emoji="🏦">🏦</div>
-            <div class="ep-opt" data-emoji="💵">💵</div><div class="ep-opt" data-emoji="📱">📱</div>
-            <div class="ep-opt" data-emoji="🏧">🏧</div><div class="ep-opt" data-emoji="💰">💰</div>
-            <div class="ep-opt" data-emoji="🪙">🪙</div><div class="ep-opt" data-emoji="🏪">🏪</div>
+            <div class="ep-opt selected" data-emoji="💳">💳</div>
+            <div class="ep-opt" data-emoji="🏦">🏦</div>
+            <div class="ep-opt" data-emoji="💵">💵</div>
+            <div class="ep-opt" data-emoji="📱">📱</div>
+            <div class="ep-opt" data-emoji="🏧">🏧</div>
+            <div class="ep-opt" data-emoji="💰">💰</div>
+            <div class="ep-opt" data-emoji="🪙">🪙</div>
+            <div class="ep-opt" data-emoji="🏪">🏪</div>
           </div>
         </div>
-        <div class="form-field"><label>Balance (₹)</label><input type="number" id="walletBalInp" placeholder="0.00" min="0" step="0.01" inputmode="decimal" /></div>
-        <div class="form-field"><label>Color</label>
+        <div class="form-field">
+          <label>Balance (₹)</label>
+          <input type="number" id="walletBalInp" placeholder="0.00" min="0" step="0.01" />
+        </div>
+        <div class="form-field">
+          <label>Color</label>
           <div class="color-picker" id="walletColorPicker">
-            <div class="cp-opt selected" data-color="#2563EB" style="background:#2563EB"></div>
+            <div class="cp-opt selected" data-color="#7c50ff" style="background:#7c50ff"></div>
             <div class="cp-opt" data-color="#25d890" style="background:#25d890"></div>
-            <div class="cp-opt" data-color="#3B82F6" style="background:#3B82F6"></div>
+            <div class="cp-opt" data-color="#4da6ff" style="background:#4da6ff"></div>
             <div class="cp-opt" data-color="#ff4f6a" style="background:#ff4f6a"></div>
             <div class="cp-opt" data-color="#ffb628" style="background:#ffb628"></div>
             <div class="cp-opt" data-color="#ff7043" style="background:#ff7043"></div>
@@ -276,34 +405,60 @@
           </div>
         </div>
       </div>
-      <div class="modal-ft"><button class="btn-ghost" id="cancelWalletBtn">Cancel</button><button class="btn-primary" id="saveWalletBtn">Save Wallet</button></div>
+      <div class="modal-ft">
+        <button class="btn-ghost" id="cancelWalletBtn">Cancel</button>
+        <button class="btn-primary" id="saveWalletBtn">Save Wallet</button>
+      </div>
     </div>
   </div>
 
+  <!-- Saving Goal Modal -->
   <div class="modal-overlay" id="goalModal" role="dialog" aria-modal="true">
     <div class="modal modal-sm">
-      <div class="modal-hd"><h2 class="modal-ttl" id="goalModalTitle">New Saving Goal</h2><button class="modal-close-btn" id="closeGoalModalBtn">✕</button></div>
+      <div class="modal-hd">
+        <h2 class="modal-ttl" id="goalModalTitle">New Saving Goal</h2>
+        <button class="modal-close-btn" id="closeGoalModalBtn">✕</button>
+      </div>
       <div class="modal-body">
-        <div class="form-field"><label>Goal Name</label><input type="text" id="goalNameInp" placeholder="e.g. New Laptop" /></div>
-        <div class="form-field"><label>Icon</label>
+        <div class="form-field">
+          <label>Goal Name</label>
+          <input type="text" id="goalNameInp" placeholder="e.g. New Laptop" />
+        </div>
+        <div class="form-field">
+          <label>Icon</label>
           <div class="emoji-picker" id="goalEmojiPicker">
-            <div class="ep-opt selected" data-emoji="🎯">🎯</div><div class="ep-opt" data-emoji="🏠">🏠</div>
-            <div class="ep-opt" data-emoji="🚗">🚗</div><div class="ep-opt" data-emoji="✈️">✈️</div>
-            <div class="ep-opt" data-emoji="💻">💻</div><div class="ep-opt" data-emoji="📱">📱</div>
-            <div class="ep-opt" data-emoji="🎓">🎓</div><div class="ep-opt" data-emoji="💍">💍</div>
-            <div class="ep-opt" data-emoji="🏋️">🏋️</div><div class="ep-opt" data-emoji="🌴">🌴</div>
+            <div class="ep-opt selected" data-emoji="🎯">🎯</div>
+            <div class="ep-opt" data-emoji="🏠">🏠</div>
+            <div class="ep-opt" data-emoji="🚗">🚗</div>
+            <div class="ep-opt" data-emoji="✈️">✈️</div>
+            <div class="ep-opt" data-emoji="💻">💻</div>
+            <div class="ep-opt" data-emoji="📱">📱</div>
+            <div class="ep-opt" data-emoji="🎓">🎓</div>
+            <div class="ep-opt" data-emoji="💍">💍</div>
+            <div class="ep-opt" data-emoji="🏋️">🏋️</div>
+            <div class="ep-opt" data-emoji="🌴">🌴</div>
           </div>
         </div>
         <div class="form-row-2">
-          <div class="form-field"><label>Target Amount (₹)</label><input type="number" id="goalTargetInp" placeholder="e.g. 50000" min="0" inputmode="decimal" /></div>
-          <div class="form-field"><label>Already Saved (₹)</label><input type="number" id="goalSavedInp" placeholder="0" min="0" inputmode="decimal" /></div>
+          <div class="form-field">
+            <label>Target Amount (₹)</label>
+            <input type="number" id="goalTargetInp" placeholder="e.g. 50000" min="0" />
+          </div>
+          <div class="form-field">
+            <label>Already Saved (₹)</label>
+            <input type="number" id="goalSavedInp" placeholder="0" min="0" />
+          </div>
         </div>
-        <div class="form-field"><label>Target Date <span class="opt-badge">(optional)</span></label><input type="date" id="goalDeadlineInp" /></div>
-        <div class="form-field"><label>Color</label>
+        <div class="form-field">
+          <label>Target Date <span class="opt-badge">(optional)</span></label>
+          <input type="date" id="goalDeadlineInp" />
+        </div>
+        <div class="form-field">
+          <label>Color</label>
           <div class="color-picker" id="goalColorPicker">
-            <div class="cp-opt selected" data-color="#2563EB" style="background:#2563EB"></div>
+            <div class="cp-opt selected" data-color="#7c50ff" style="background:#7c50ff"></div>
             <div class="cp-opt" data-color="#25d890" style="background:#25d890"></div>
-            <div class="cp-opt" data-color="#3B82F6" style="background:#3B82F6"></div>
+            <div class="cp-opt" data-color="#4da6ff" style="background:#4da6ff"></div>
             <div class="cp-opt" data-color="#ff4f6a" style="background:#ff4f6a"></div>
             <div class="cp-opt" data-color="#ffb628" style="background:#ffb628"></div>
             <div class="cp-opt" data-color="#ff7043" style="background:#ff7043"></div>
@@ -312,44 +467,39 @@
           </div>
         </div>
       </div>
-      <div class="modal-ft"><button class="btn-ghost" id="cancelGoalBtn">Cancel</button><button class="btn-primary" id="saveGoalBtn">Save Goal</button></div>
+      <div class="modal-ft">
+        <button class="btn-ghost" id="cancelGoalBtn">Cancel</button>
+        <button class="btn-primary" id="saveGoalBtn">Save Goal</button>
+      </div>
     </div>
   </div>
 
+  <!-- Deposit to Goal Modal -->
   <div class="modal-overlay" id="depositModal" role="dialog" aria-modal="true">
     <div class="modal modal-sm">
-      <div class="modal-hd"><h2 class="modal-ttl">Add Funds to Goal</h2><button class="modal-close-btn" id="closeDepositModalBtn">✕</button></div>
+      <div class="modal-hd">
+        <h2 class="modal-ttl">Add Funds to Goal</h2>
+        <button class="modal-close-btn" id="closeDepositModalBtn">✕</button>
+      </div>
       <div class="modal-body">
         <div class="deposit-goal-info" id="depositGoalInfo"></div>
-        <div class="form-field"><label>Amount to Add (₹)</label><input type="number" id="depositAmtInp" placeholder="0.00" min="0" inputmode="decimal" /></div>
+        <div class="form-field">
+          <label>Amount to Add (₹)</label>
+          <input type="number" id="depositAmtInp" placeholder="0.00" min="0" />
+        </div>
       </div>
-      <div class="modal-ft"><button class="btn-ghost" id="cancelDepositBtn">Cancel</button><button class="btn-primary" id="saveDepositBtn">Add Funds</button></div>
+      <div class="modal-ft">
+        <button class="btn-ghost" id="cancelDepositBtn">Cancel</button>
+        <button class="btn-primary" id="saveDepositBtn">Add Funds</button>
+      </div>
     </div>
   </div>
-
+  <!-- Toast Container -->
   <div class="toast-container" id="toastContainer"></div>
+  <!-- Sidebar Backdrop -->
   <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
-
-  <!-- ════════════════ WATERMARK ════════════════ -->
-  <div class="watermark" aria-hidden="true">
-    <div class="wm-inner">
-      <div class="wm-logo">₹</div>
-      <div class="wm-text">
-        <span class="wm-brand">FinSpace</span>
-        <span class="wm-tagline">Personal Finance Manager</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ════════════════ PAGE LOADER ════════════════ -->
-  <div class="page-loader" id="pageLoader">
-    <div class="loader-content">
-      <div class="loader-gem">₹</div>
-      <div class="loader-ring"></div>
-      <p class="loader-text">Loading FinSpace…</p>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>
+
 </html>
